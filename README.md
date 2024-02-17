@@ -4,7 +4,7 @@
 
 Before running the Quiz App, ensure that the following are installed:
 
-- Java
+- Java-17
 - Docker
 - Maven
 - IntelliJ
@@ -19,12 +19,16 @@ Run the below command to build maven project
 
 ``mvn clean install -DskipTests``
 
-## Run
-Open QuizappApplication, right click and run 
+## Running the Application
+To run the application, open QuizappApplication, right-click, and select "Run."
 
-## Verify
-```
+## Verification
+Verify the setup by executing the following command:
+```bash
 % curl localhost:8080/questions/all
+```
+You should receive a response indicating that all questions are retrieved successfully:
+```
 Hi, these is all your questions
 ```
 
