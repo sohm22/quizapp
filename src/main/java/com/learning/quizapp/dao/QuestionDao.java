@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface QuestionsDao extends JpaRepository<Question, Integer> {
+public interface QuestionDao extends JpaRepository<Question, Integer> {
 
 
     List<Question> findByCategory(String category);
