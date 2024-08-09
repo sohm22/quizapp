@@ -15,4 +15,8 @@ public class QuestionsService {
     public List<Question> getAllQuestions() {
         return questionsDao.findAll();
     }
+
+    public List<Question> getQuestionsByCategory(String category) {
+        return questionsDao.findByCategory(category);
+    }
 }
