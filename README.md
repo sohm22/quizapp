@@ -10,6 +10,8 @@ Before running the Quiz App, ensure that the following are installed:
 - IntelliJ
 
 ## DB setup
+#TODO : write about .env file 
+
 Following command to run postgres and import required data into it
 
 ```docker-compose up db -d```

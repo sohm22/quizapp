@@ -1,4 +1,3 @@
-
 drop table if exists question;
 CREATE TABLE question (
     id BIGSERIAL PRIMARY KEY,
