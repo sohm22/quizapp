@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = "com.learning.controllers")
+@ComponentScan(basePackages = {"com.learning"})
 public class QuizappApplication {
 
 	public static void main(String[] args) {

@@ -7,7 +7,7 @@ services:
     env_file:
       - .env # The name of your environment file (the one at the repository root)
     ports:
-      - 5492:5432
+      - "5492:5432"
     environment:
       POSTGRES_DB: questions
     volumes:
