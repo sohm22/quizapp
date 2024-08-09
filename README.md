@@ -29,9 +29,19 @@ Verify the setup by executing the following command:
 ```bash
 % curl localhost:8080/questions/all
 ```
-You should receive a response indicating that all questions are retrieved successfully:
+You should receive a proper response with questions (sample response)
 ```
-Hi, these is all your questions
+[
+	{
+		"id": 1,
+		"questionTitle": "What is a class in Java?",
+		"option1": "A function",
+		"option2": "An object",
+		"option3": "A data structure",
+		"option4": "A loop",
+		"rightAnswer": null
+	}
+]
 ```
 
 
