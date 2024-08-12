@@ -35,4 +35,10 @@ public class QuestionController {
         return questionService.updateQuestion(id, question);
     }
 
+    @GetMapping("{id}")
+    public Optional<Question> getQuestion(@PathVariable int id){
+        return questionService.getQuestionById(id);
+    }
+
+
 }

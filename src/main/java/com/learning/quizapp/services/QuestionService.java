@@ -48,4 +48,8 @@ public class QuestionService {
     private <T> void updateIfNotNull(Consumer<T> setter, T value){
         Optional.ofNullable(value).ifPresent(setter);
     }
+
+    public Optional<Question> getQuestionById(int id) {
+        return questionDao.findById(id);
+    }
 }
