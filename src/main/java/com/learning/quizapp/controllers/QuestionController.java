@@ -3,6 +3,7 @@ package com.learning.quizapp.controllers;
 import com.learning.quizapp.model.Question;
 import com.learning.quizapp.services.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,33 +17,39 @@ public class QuestionController {
     QuestionService questionService;
 
     @GetMapping
-    public List<Question> getAllQuestions() {
-        return questionService.getAllQuestions();
+    public ResponseEntity<List<Question>> getAllQuestions() {
+        return ResponseEntity.ok()
+                .body(questionService.getAllQuestions());
     }
 
     @GetMapping("category/{category}")
-    public List<Question> getQuestionsByCategory(@PathVariable String category) {
-        return questionService.getQuestionsByCategory(category);
+    public ResponseEntity<List<Question>> getQuestionsByCategory(@PathVariable String category) {
+        return ResponseEntity.ok()
+                .body(questionService.getQuestionsByCategory(category));
     }
 
     @PutMapping
     @PostMapping
-    public Question addQuestion(@RequestBody Question question) {
-        return questionService.addQuestion(question);
+    public ResponseEntity<Question> addQuestion(@RequestBody Question question) {
+        return ResponseEntity.ok()
+                .body(questionService.addQuestion(question));
     }
 
     @PatchMapping("{id}")
-    public Optional<Question> updateQuestionIfNotNull(@PathVariable int id, @RequestBody Question question) {
-        return questionService.updateQuestionIfNotNull(id, question);
+    public ResponseEntity<Question> updateQuestionIfNotNull(@PathVariable int id, @RequestBody Question question) {
+        return ResponseEntity.ok()
+                .body(questionService.updateQuestionIfNotNull(id, question));
     }
 
     @PutMapping("{id}")
-    public Optional<Question> updateQuestion(@PathVariable int id, @RequestBody Question question) {
-        return questionService.updateQuestion(id, question);
+    public ResponseEntity<Question> updateQuestion(@PathVariable int id, @RequestBody Question question) {
+        return ResponseEntity.ok()
+                .body(questionService.updateQuestion(id, question));
     }
 
     @GetMapping("{id}")
-    public Optional<Question> getQuestion(@PathVariable int id) {
-        return questionService.getQuestionById(id);
+    public ResponseEntity<Question> getQuestion(@PathVariable int id) {
+        return ResponseEntity.ok()
+                .body(questionService.getQuestionById(id));
     }
 }
