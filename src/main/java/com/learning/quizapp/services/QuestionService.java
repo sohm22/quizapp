@@ -27,7 +27,7 @@ public class QuestionService {
         return questionDao.save(question);
     }
 
-    public Optional<Question> updateQuestion(int id, Question updatedQuestion) {
+    public Optional<Question> updateQuestionIfNotNull(int id, Question updatedQuestion) {
         Optional<Question> optionalQuestion = questionDao.findById(id);
         if (optionalQuestion.isPresent()) {
             Question existingQuestion = optionalQuestion.get();
@@ -51,5 +51,15 @@ public class QuestionService {
 
     public Optional<Question> getQuestionById(int id) {
         return questionDao.findById(id);
+    }
+
+    public Optional<Question> updateQuestion(int id, Question question) {
+        Optional<Question> optionalQuestion = questionDao.findById(id);
+        if (optionalQuestion.isPresent()) {
+            question.setId(id);
+            return Optional.of(questionDao.save(question));
+        } else {
+            return Optional.empty();
+        }
     }
 }

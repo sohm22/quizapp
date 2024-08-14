@@ -9,14 +9,14 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("question")
+@RequestMapping("questions")
 public class QuestionController {
 
     @Autowired
     QuestionService questionService;
 
-    @GetMapping("all")
-    public List<Question> getAllQuestions(){
+    @GetMapping
+    public List<Question> getAllQuestions() {
         return questionService.getAllQuestions();
     }
 
@@ -25,9 +25,15 @@ public class QuestionController {
         return questionService.getQuestionsByCategory(category);
     }
 
-    @PostMapping()
-    public Question addQuestion(@RequestBody Question question){
+    @PutMapping
+    @PostMapping
+    public Question addQuestion(@RequestBody Question question) {
         return questionService.addQuestion(question);
+    }
+
+    @PatchMapping("{id}")
+    public Optional<Question> updateQuestionIfNotNull(@PathVariable int id, @RequestBody Question question) {
+        return questionService.updateQuestionIfNotNull(id, question);
     }
 
     @PutMapping("{id}")
@@ -36,9 +42,7 @@ public class QuestionController {
     }
 
     @GetMapping("{id}")
-    public Optional<Question> getQuestion(@PathVariable int id){
+    public Optional<Question> getQuestion(@PathVariable int id) {
         return questionService.getQuestionById(id);
     }
-
-
 }

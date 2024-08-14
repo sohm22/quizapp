@@ -1,0 +1,262 @@
+_type: export
+__export_format: 4
+__export_date: 2024-08-14T05:44:22.536Z
+__export_source: insomnia.desktop.app:v9.3.2
+resources:
+  - _id: req_bae698b5911643c890c447a26bc70877
+    parentId: fld_3433fa3a1fb7452b839618791bc049ad
+    modified: 1723488846488
+    created: 1723488829534
+    url: http://localhost:8080/question/29
+    name: New Request
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/9.3.2
+    authentication: {}
+    metaSortKey: -1723488829534
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_3433fa3a1fb7452b839618791bc049ad
+    parentId: wrk_scratchpad
+    modified: 1723215725669
+    created: 1723215725669
+    name: quizapp
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1723215725669
+    _type: request_group
+  - _id: wrk_scratchpad
+    parentId: null
+    modified: 1697456939906
+    created: 1697456939906
+    name: Scratch Pad
+    description: ""
+    scope: collection
+    _type: workspace
+  - _id: req_d44621ac0d604c4c8ec8fad95cc46c63
+    parentId: fld_3433fa3a1fb7452b839618791bc049ad
+    modified: 1723224816737
+    created: 1723224373934
+    url: http://localhost:8080/question
+    name: add question
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        		"questionTitle": "What is value of 2^9?",
+        		"option1": "512",
+        		"option2": "255",
+        		"option3": "127",
+        		"option4": "63",
+        		"correctAnswer": "127",
+        		"difficultyLevel": "Easy",
+        		"category": "java"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/9.3.2
+    authentication: {}
+    metaSortKey: -1723224373934
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_8938e17a5494461c9247c502c2dc9a95
+    parentId: fld_3433fa3a1fb7452b839618791bc049ad
+    modified: 1723613833445
+    created: 1723613754372
+    url: http://localhost:8080/questions
+    name: PUT add question (create resource)
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        		"questionTitle": "What is value of 2^11?",
+        		"option1": "512",
+        		"option2": "2048",
+        		"option3": "127",
+        		"option4": "1024",
+        		"correctAnswer": "127",
+        		"difficultyLevel": "Easy",
+        		"category": "bitOperations"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/9.3.2
+    authentication: {}
+    metaSortKey: -1723222231077.5
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_2a19c0a0ef5f44ba89184ee12fb1aff2
+    parentId: fld_3433fa3a1fb7452b839618791bc049ad
+    modified: 1723613851383
+    created: 1723270968992
+    url: http://localhost:8080/questions/27
+    name: update question
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        		"questionTitle": "What is value of 2^9?",
+        		"correctAnswer": "127",
+        	  "category" : "bitOperations"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/9.3.2
+    authentication: {}
+    metaSortKey: -1723220088221
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_b0b82a336b3248b6b2a2ffa3221e300e
+    parentId: fld_3433fa3a1fb7452b839618791bc049ad
+    modified: 1723613632294
+    created: 1723613599831
+    url: http://localhost:8080/questions/27
+    name: update question if not null
+    description: ""
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        		"questionTitle": "What is value of 2^9?",
+        		"option1": "515",
+        		"difficultyLevel": "Medium",
+        	  "category" : "bitOperations"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/9.3.2
+    authentication: {}
+    metaSortKey: -1723217945364.5
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_97b291fa97514c14977ca9f1d8a38700
+    parentId: fld_3433fa3a1fb7452b839618791bc049ad
+    modified: 1723613551293
+    created: 1723215802508
+    url: http://localhost:8080/questions/category/java
+    name: questions by category
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/9.3.2
+    authentication: {}
+    metaSortKey: -1723215802508
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_4aa1397cd1f643baba9df75286a3b330
+    parentId: fld_3433fa3a1fb7452b839618791bc049ad
+    modified: 1723613544026
+    created: 1705668082152
+    url: http://localhost:8080/questions
+    name: all questions
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: client-request-id
+        value: 4d38b576-8d45-418e-a1fb-235cef60ebe7
+        id: pair_c6b36cb14faf4681b76fa6ba071948bb
+        disabled: false
+      - id: pair_cb820fc9734b4499a13e1ecd945fc54b
+        name: x-ms-correlation-request-id
+        value: 0b304ffa-f9d0-4b06-b4de-b34ce5a06670
+        description: ""
+    authentication: {}
+    metaSortKey: -1723215757273
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_99d30891da4bdcebc63947a8fc17f076de878684
+    parentId: wrk_scratchpad
+    modified: 1699352625318
+    created: 1698993310882
+    name: Base Environment
+    data: {}
+    dataPropertyOrder: {}
+    color: null
+    isPrivate: false
+    metaSortKey: 1698993310882
+    _type: environment
+  - _id: jar_99d30891da4bdcebc63947a8fc17f076de878684
+    parentId: wrk_scratchpad
+    modified: 1698993310927
+    created: 1698993310927
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
