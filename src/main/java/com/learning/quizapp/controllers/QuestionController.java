@@ -27,7 +27,6 @@ public class QuestionController {
                 .body(questionService.getQuestionsByCategory(category));
     }
 
-    @PutMapping
     @PostMapping
     public ResponseEntity<Question> addQuestion(@RequestBody Question question) {
         return ResponseEntity.ok()

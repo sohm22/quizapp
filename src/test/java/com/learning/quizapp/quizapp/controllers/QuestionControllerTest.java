@@ -21,7 +21,7 @@ import java.util.List;
 
 import static org.mockito.Mockito.when;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -32,13 +32,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class QuestionControllerTest {
 
     @Autowired
-    private  MockMvc mockMvc;
+    private MockMvc mockMvc;
 
     @MockBean
     private QuestionService questionService;
 
     @Autowired
     private ObjectMapper objectMapper;
+
 
     @Test
     public void testGetAllQuestions() throws Exception {
@@ -78,6 +79,86 @@ class QuestionControllerTest {
                 .andExpect(jsonPath("$[1].id").value(2))
                 .andExpect(jsonPath("$[1].questionTitle").value("What is Spring Boot?"))
                 .andExpect(jsonPath("$[1].category").value("Framework"));
+    }
+
+    @Test
+    public void testGetQuestionsByCategory() throws Exception {
+        List<Question> questions = Arrays.asList(
+                createQuestion(
+                        1,
+                        "What is Java?",
+                        "A programming language",
+                        "A coffee brand",
+                        "An island",
+                        "A car model",
+                        "A programming language",
+                        "Easy",
+                        "Programming"
+                )
+        );
+
+        when(questionService.getQuestionsByCategory("programming")).thenReturn(questions);
+
+        mockMvc.perform(get("/questions/category/programming"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.size()").value(1));
+    }
+
+    @Test
+    public void testAddAndUpdateQuestion() throws Exception {
+        int id = 10;
+        Question question = createQuestion(
+                id,
+                "What is Java?",
+                "A programming language",
+                "A coffee brand",
+                "An island",
+                "A car model",
+                "A programming language",
+                "Easy",
+                "Programming"
+        );
+
+        when(questionService.addQuestion(question)).thenReturn(question);
+        when(questionService.updateQuestionIfNotNull(id, question)).thenReturn(question);
+        when(questionService.updateQuestion(id, question)).thenReturn(question);
+
+        mockMvc.perform(post("/questions")
+                        .contentType("application/json")
+                        .content(objectMapper.writeValueAsString(question)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(id));
+        mockMvc.perform(patch("/questions/" + id)
+                        .contentType("application/json")
+                        .content(objectMapper.writeValueAsString(question)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(id));
+        mockMvc.perform(put("/questions/" + id)
+                        .contentType("application/json")
+                        .content(objectMapper.writeValueAsString(question)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(id));
+    }
+
+    @Test
+    public void testGetQuestionById() throws Exception {
+        int id = 10;
+        Question question = createQuestion(
+                id,
+                "What is Java?",
+                "A programming language",
+                "A coffee brand",
+                "An island",
+                "A car model",
+                "A programming language",
+                "Easy",
+                "Programming"
+        );
+
+        when(questionService.getQuestionById(id)).thenReturn(question);
+
+        mockMvc.perform(get("/questions/" + id))
+                .andExpect(status().isOk());
     }
 
     private Question createQuestion(Integer id, String questionTitle, String option1, String option2,
