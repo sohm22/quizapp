@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("questions")
@@ -28,7 +27,6 @@ public class QuestionController {
                 .body(questionService.getQuestionsByCategory(category));
     }
 
-    @PutMapping
     @PostMapping
     public ResponseEntity<Question> addQuestion(@RequestBody Question question) {
         return ResponseEntity.ok()
