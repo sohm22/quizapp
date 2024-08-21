@@ -3,13 +3,11 @@ package com.learning.quizapp.quizapp.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.learning.quizapp.controllers.QuestionController;
 
+import com.learning.quizapp.dao.QuestionDao;
 import com.learning.quizapp.model.Question;
 import com.learning.quizapp.services.QuestionService;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -28,7 +26,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(QuestionController.class)
 @AutoConfigureMockMvc
-@ExtendWith(MockitoExtension.class)
 class QuestionControllerTest {
 
     @Autowired
