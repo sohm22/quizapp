@@ -1,7 +1,7 @@
 package com.learning.quizapp.controllers;
 
 import com.learning.quizapp.model.Question;
-import com.learning.quizapp.services.QuestionService;
+import com.learning.quizapp.services.IQuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,7 @@ import java.util.List;
 public class QuestionController {
 
     @Autowired
-    QuestionService questionService;
+    private IQuestionService questionService;
 
     @GetMapping
     public ResponseEntity<List<Question>> getAllQuestions() {

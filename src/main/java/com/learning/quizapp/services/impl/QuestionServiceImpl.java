@@ -1,8 +1,9 @@
-package com.learning.quizapp.services;
+package com.learning.quizapp.services.impl;
 
 import com.learning.quizapp.dao.QuestionDao;
 import com.learning.quizapp.exceptions.ResourceNotFoundException;
 import com.learning.quizapp.model.Question;
+import com.learning.quizapp.services.IQuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,15 +12,17 @@ import java.util.Optional;
 import java.util.function.Consumer;
 
 @Service
-public class QuestionService {
+public class QuestionServiceImpl implements IQuestionService {
 
     @Autowired
     QuestionDao questionDao;
 
+    @Override
     public List<Question> getAllQuestions() {
         return questionDao.findAll();
     }
 
+    @Override
     public List<Question> getQuestionsByCategory(String category) {
         List<Question> questionsByCategory = questionDao.findByCategory(category);
         if (questionsByCategory.isEmpty()) {
@@ -28,10 +31,12 @@ public class QuestionService {
         return questionDao.findByCategory(category);
     }
 
+    @Override
     public Question addQuestion(Question question) {
         return questionDao.save(question);
     }
 
+    @Override
     public Question updateQuestionIfNotNull(int id, Question updatedQuestion) {
         Optional<Question> optionalQuestion = questionDao.findById(id);
         if (optionalQuestion.isPresent()) {
@@ -53,6 +58,7 @@ public class QuestionService {
         Optional.ofNullable(value).ifPresent(setter);
     }
 
+    @Override
     public Question getQuestionById(int id) {
         Optional<Question> question = questionDao.findById(id);
         if (question.isPresent()) {
@@ -61,6 +67,7 @@ public class QuestionService {
         throw new ResourceNotFoundException("Question with id " + id + " not found");
     }
 
+    @Override
     public Question updateQuestion(int id, Question question) {
         Optional<Question> optionalQuestion = questionDao.findById(id);
         if (optionalQuestion.isPresent()) {

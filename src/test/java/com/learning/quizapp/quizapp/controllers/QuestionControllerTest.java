@@ -3,9 +3,8 @@ package com.learning.quizapp.quizapp.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.learning.quizapp.controllers.QuestionController;
 
-import com.learning.quizapp.dao.QuestionDao;
 import com.learning.quizapp.model.Question;
-import com.learning.quizapp.services.QuestionService;
+import com.learning.quizapp.services.IQuestionService;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,11 +31,10 @@ class QuestionControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private QuestionService questionService;
+    private IQuestionService questionService;
 
     @Autowired
     private ObjectMapper objectMapper;
-
 
     @Test
     public void testGetAllQuestions() throws Exception {
