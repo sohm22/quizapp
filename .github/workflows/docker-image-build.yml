@@ -26,4 +26,4 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/quizapp-quiz-app:latest  # Replace with your image name
+          tags: ${{ secrets.DOCKER_USERNAME }}/quizapp:latest  # Replace with your image name
