@@ -15,5 +15,14 @@ services:
       - ./db/migration/v1_schema.sql:/docker-entrypoint-initdb.d/1_init.sql
       - ./db/migration/v2_questions_data.sql:/docker-entrypoint-initdb.d/2_questions_data.sql
 
+  quiz-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8080"
+    depends_on:
+      - db
+
 volumes:
   postgres_data:
