@@ -1,0 +1,28 @@
+name: Deploy to Production
+
+on:
+  workflow_run:
+    workflows: [ "Build and Push Docker Image" ]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v2
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Deploy Application
+        run: |
+          ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_IP }} << 'EOF'
+            cd /home/ec2-user
+            docker-compose pull
+            docker-compose up -d
+            sleep 20
+            docker ps
+          EOF
