@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    env_file:
+      - .env # The name of your environment file (the one at the repository root)
+    ports:
+      - "5492:5432"
+    environment:
+      POSTGRES_DB: questions
+    volumes:
+      - ./postgres_data:/var/lib/postgres/data
+      - ./db/migration/v1_schema.sql:/docker-entrypoint-initdb.d/1_init.sql
+      - ./db/migration/v2_questions_data.sql:/docker-entrypoint-initdb.d/2_questions_data.sql
+
+  quiz-app:
+    image: svm1994/quizapp
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
