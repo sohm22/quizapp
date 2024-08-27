@@ -121,7 +121,7 @@ class QuestionControllerTest {
         mockMvc.perform(post("/questions")
                         .contentType("application/json")
                         .content(objectMapper.writeValueAsString(question)))
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id").value(id));
         mockMvc.perform(patch("/questions/" + id)
                         .contentType("application/json")
