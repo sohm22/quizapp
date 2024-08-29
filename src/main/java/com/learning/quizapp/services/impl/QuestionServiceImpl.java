@@ -4,7 +4,6 @@ import com.learning.quizapp.dao.QuestionDao;
 import com.learning.quizapp.exceptions.ResourceNotFoundException;
 import com.learning.quizapp.model.Question;
 import com.learning.quizapp.services.IQuestionService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,8 +13,11 @@ import java.util.function.Consumer;
 @Service
 public class QuestionServiceImpl implements IQuestionService {
 
-    @Autowired
     QuestionDao questionDao;
+
+    public QuestionServiceImpl(QuestionDao questionDao) {
+        this.questionDao = questionDao;
+    }
 
     @Override
     public List<Question> getAllQuestions() {
