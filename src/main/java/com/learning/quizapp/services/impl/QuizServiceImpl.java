@@ -1,6 +1,7 @@
 package com.learning.quizapp.services.impl;
 
 import com.learning.quizapp.dao.QuizDao;
+import com.learning.quizapp.dtos.CategoryQuizCountDto;
 import com.learning.quizapp.exceptions.ResourceNotFoundException;
 import com.learning.quizapp.model.Question;
 import com.learning.quizapp.model.Quiz;
@@ -31,6 +32,21 @@ public class QuizServiceImpl implements IQuizService {
         return quiz.orElseThrow(() ->new ResourceNotFoundException("quiz with id " + id + " not found"));
     }
 
+    public List<CategoryQuizCountDto> getCategoriesWithQuizCount() {
+        // Fetch raw results from the DAO
+        List<Object[]> results = quizDao.findCategoriesWithQuizCount();
+
+        // Map results to a list of CategoryQuizCountDto
+        List<CategoryQuizCountDto> categoryQuizCounts = new ArrayList<>();
+        for (Object[] result : results) {
+            String category = (String) result[0];
+            Long count = (Long) result[1]; // COUNT returns Long in JPA
+            categoryQuizCounts.add(new CategoryQuizCountDto(category, count));
+        }
+
+        return categoryQuizCounts;
+    }
+
     @Override
     public Quiz createQuiz(QuizRequest quizRequest) {
         List<Question> questions = selectRandomItems(
@@ -39,6 +55,7 @@ public class QuizServiceImpl implements IQuizService {
         );
         Quiz quiz = new Quiz();
         quiz.setTitle(quizRequest.getTitle());
+        quiz.setCategory(quizRequest.getCategory());
         quiz.setQuestion(questions);
         return quizDao.save(quiz);
     }

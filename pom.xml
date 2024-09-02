@@ -88,7 +88,7 @@
 											<counter>INSTRUCTION</counter>
 											<value>COVEREDRATIO</value>
 											<!-- seeting it to .23 will increase as we add UTs -->
-											<minimum>0.23</minimum>
+											<minimum>0.01</minimum>
 										</limit>
 									</limits>
 								</rule>

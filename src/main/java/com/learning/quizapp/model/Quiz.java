@@ -13,6 +13,7 @@ public class Quiz {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
+    private String category;
 
     // https://github.com/sohm22/quizapp/wiki/Many%E2%80%90to%E2%80%90many-Relatationship-between-Quiz-and-Question
     @ManyToMany

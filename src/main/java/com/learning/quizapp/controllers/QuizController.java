@@ -1,5 +1,6 @@
 package com.learning.quizapp.controllers;
 
+import com.learning.quizapp.dtos.CategoryQuizCountDto;
 import com.learning.quizapp.model.Quiz;
 import com.learning.quizapp.model.QuizRequest;
 import com.learning.quizapp.services.IQuizService;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
 
 @RestController
 @RequestMapping("quiz")
@@ -33,5 +35,10 @@ public class QuizController {
     @GetMapping("{id}")
     public ResponseEntity<Quiz> getQuiz(@PathVariable int id) {
         return ResponseEntity.ok(quizService.getQuizById(id));
+    }
+
+    @GetMapping("categories/count")
+    public ResponseEntity<List<CategoryQuizCountDto>> getCategories() {
+        return ResponseEntity.ok(quizService.getCategoriesWithQuizCount());
     }
 }
