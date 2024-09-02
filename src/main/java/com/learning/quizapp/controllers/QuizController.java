@@ -1,6 +1,7 @@
 package com.learning.quizapp.controllers;
 
 import com.learning.quizapp.dtos.CategoryQuizCountDto;
+import com.learning.quizapp.dtos.QuizIdTitleDto;
 import com.learning.quizapp.model.Quiz;
 import com.learning.quizapp.model.QuizRequest;
 import com.learning.quizapp.services.IQuizService;
@@ -40,5 +41,10 @@ public class QuizController {
     @GetMapping("categories/count")
     public ResponseEntity<List<CategoryQuizCountDto>> getCategories() {
         return ResponseEntity.ok(quizService.getCategoriesWithQuizCount());
+    }
+
+    @GetMapping("category/{category}")
+    public ResponseEntity<List<QuizIdTitleDto>> getQuizMetaDataByCategory(@PathVariable String category){
+        return ResponseEntity.ok(quizService.getQuizzesMetaDataByCategory(category));
     }
 }
