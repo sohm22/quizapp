@@ -2,6 +2,7 @@ package com.learning.quizapp.services.impl;
 
 import com.learning.quizapp.dao.QuizDao;
 import com.learning.quizapp.dtos.CategoryQuizCountDto;
+import com.learning.quizapp.dtos.QuizIdTitleDto;
 import com.learning.quizapp.exceptions.ResourceNotFoundException;
 import com.learning.quizapp.model.Question;
 import com.learning.quizapp.model.Quiz;
@@ -32,6 +33,7 @@ public class QuizServiceImpl implements IQuizService {
         return quiz.orElseThrow(() ->new ResourceNotFoundException("quiz with id " + id + " not found"));
     }
 
+    @Override
     public List<CategoryQuizCountDto> getCategoriesWithQuizCount() {
         // Fetch raw results from the DAO
         List<Object[]> results = quizDao.findCategoriesWithQuizCount();
@@ -58,6 +60,12 @@ public class QuizServiceImpl implements IQuizService {
         quiz.setCategory(quizRequest.getCategory());
         quiz.setQuestion(questions);
         return quizDao.save(quiz);
+    }
+
+    @Override
+    public List<QuizIdTitleDto> getQuizzesMetaDataByCategory(String category) {
+        // Use the custom query method to fetch only id and title
+        return quizDao.findQuizByCategory(category);
     }
 
     private static <T> List<T> selectRandomItems(List<T> list, int numberOfItems) {

@@ -1,6 +1,7 @@
 package com.learning.quizapp.services;
 
 import com.learning.quizapp.dtos.CategoryQuizCountDto;
+import com.learning.quizapp.dtos.QuizIdTitleDto;
 import com.learning.quizapp.model.Quiz;
 import com.learning.quizapp.model.QuizRequest;
 
@@ -15,4 +16,6 @@ public interface IQuizService {
     Quiz getQuizById(int id);
 
     List<CategoryQuizCountDto> getCategoriesWithQuizCount();
+
+    List<QuizIdTitleDto> getQuizzesMetaDataByCategory(String category);
 }
