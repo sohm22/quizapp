@@ -5,6 +5,8 @@ import com.learning.quizapp.services.IQuestionService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
@@ -30,9 +32,13 @@ public class QuestionController {
     }
 
     @PostMapping
-    public ResponseEntity<Question> addQuestion(@RequestBody Question question) {
-        return ResponseEntity.ok()
-                .body(questionService.addQuestion(question));
+    public ResponseEntity<Question> addQuestion(@RequestBody Question question) throws URISyntaxException {
+        Question savedQuestion = questionService.addQuestion(question);
+
+        // Build the URI for the newly created resource
+        URI location = new URI("/questions/" + savedQuestion.getId());
+        return ResponseEntity.created(location)
+                .body(savedQuestion);
     }
 
     @PatchMapping("{id}")
