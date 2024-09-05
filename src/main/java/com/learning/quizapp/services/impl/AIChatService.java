@@ -13,15 +13,15 @@ import java.util.regex.Pattern;
 public class AIChatService {
 
     private final OpenAiChatModel chatModel;
-    private  final String regex = "\\[(.*?)]";
-    final Pattern pattern = Pattern.compile(regex, Pattern.DOTALL);
+    private final String regex = "\\[(.*?)]";
+    private final Pattern pattern = Pattern.compile(regex, Pattern.DOTALL);
 
     public AIChatService(OpenAiChatModel chatModel) {
         this.chatModel = chatModel;
     }
 
-    public String queryAiService(String userQuery, String extraInfo) {
-        String modifiedQuery = userQuery + extraInfo;
+    public String queryAiService(String userQuery) {
+        String modifiedQuery = getModifiedQuery(userQuery);
         ChatResponse modelResponse = chatModel.call(
                 new Prompt(
                         modifiedQuery,
@@ -39,5 +39,13 @@ public class AIChatService {
             return matcher.group(0);
         }
         return null;
+    }
+
+    private static String getModifiedQuery(String userQuery) {
+        String extraInfo = " Generate only 10 questions and Format the response as a valid " +
+                "JSON in below format [{\"questionTitle\": \"What is a constructor?\", \"option1\": \"A member of a class\"," +
+                " \"option2\": \"A loop in Python\", \"option3\": \"A data type\", \"option4\": \"A special method\", " +
+                "\"correctAnswer\": \"A special method\", \"difficultyLevel\": \"Medium\", \"category\": \"java\"}] ";
+        return userQuery + extraInfo;
     }
 }
