@@ -28,8 +28,6 @@ public class AIChatService {
                         OpenAiChatOptions.builder()
                                 .withModel("llama3-8b-8192")
                                 .withTemperature(1.0f)
-                                //.withResponseFormat(
-                                //        new OpenAiApi.ChatCompletionRequest.ResponseFormat(OpenAiApi.ChatCompletionRequest.ResponseFormat.Type.JSON_OBJECT, "{\"questionTitle\": \"What is a constructor?\", \"option1\": \"A member of a class\", \"option2\": \"A loop in Python\", \"option3\": \"A data type\", \"option4\": \"A special method\", \"correctAnswer\": \"A special method\", \"difficultyLevel\": \"Medium\", \"category\": \"java\"}\n"))
                                 .build()
                 ));
 
