@@ -18,9 +18,13 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Deploy Application
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: |
           ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_IP }} << 'EOF'
             cd /home/ec2-user
+            echo "Exporting API key as environment variable"
+            export API_KEY=${GROQ_API_KEY}
             docker-compose pull
             docker-compose up -d
             sleep 20
