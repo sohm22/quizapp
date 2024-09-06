@@ -24,7 +24,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_IP }} << 'EOF'
             cd /home/ec2-user
             echo "Exporting API key as environment variable"
-            export API_KEY=${GROQ_API_KEY}
+            export GROQ_API_KEY=${GROQ_API_KEY}
             docker-compose pull
             docker-compose up -d
             sleep 20
