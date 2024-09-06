@@ -17,8 +17,8 @@ services:
 
   quiz-app:
     image: svm1994/quizapp
-    environment:
-      - GROQ_API_KEY=${GROQ_API_KEY}
+    env_file:
+      - .env # The name of your environment file (the one at the repository root)
     ports:
       - "8080:8080"
     depends_on:
