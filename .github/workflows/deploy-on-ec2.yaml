@@ -25,4 +25,6 @@ jobs:
             docker-compose up -d
             sleep 20
             docker ps
+            # Remove previous images (excluding the latest)
+            docker image prune -f
           EOF
