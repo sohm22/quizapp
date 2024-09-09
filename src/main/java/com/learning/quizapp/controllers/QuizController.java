@@ -4,7 +4,7 @@ import com.learning.quizapp.dtos.CategoryQuizCountDTO;
 import com.learning.quizapp.dtos.QuizIdTitleDTO;
 import com.learning.quizapp.dtos.QuizQuestionTitleOptionDTO;
 import com.learning.quizapp.model.Quiz;
-import com.learning.quizapp.model.QuizRequest;
+import com.learning.quizapp.dtos.QuizRequestDTO;
 import com.learning.quizapp.services.IQuizService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +24,7 @@ public class QuizController {
     }
 
     @PostMapping
-    public ResponseEntity<Quiz> createQuiz(@RequestBody QuizRequest quizRequest) throws URISyntaxException {
+    public ResponseEntity<Quiz> createQuiz(@RequestBody QuizRequestDTO quizRequest) throws URISyntaxException {
         // Logic to create a quiz and return the response
         Quiz savedQuiz = quizService.createQuiz(quizRequest);
 

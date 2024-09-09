@@ -1,14 +1,10 @@
 package com.learning.quizapp.services.impl;
 
 import com.learning.quizapp.dao.QuizDao;
-import com.learning.quizapp.dtos.CategoryQuizCountDTO;
-import com.learning.quizapp.dtos.QuestionTitleOptionDTO;
-import com.learning.quizapp.dtos.QuizIdTitleDTO;
-import com.learning.quizapp.dtos.QuizQuestionTitleOptionDTO;
+import com.learning.quizapp.dtos.*;
 import com.learning.quizapp.exceptions.ResourceNotFoundException;
 import com.learning.quizapp.model.Question;
 import com.learning.quizapp.model.Quiz;
-import com.learning.quizapp.model.QuizRequest;
 import com.learning.quizapp.services.IQuestionService;
 import com.learning.quizapp.services.IQuizService;
 import com.learning.quizapp.utils.QuestionMapper;
@@ -64,7 +60,7 @@ public class QuizServiceImpl implements IQuizService {
     }
 
     @Override
-    public Quiz createQuiz(QuizRequest quizRequest) {
+    public Quiz createQuiz(QuizRequestDTO quizRequest) {
         List<Question> questions = selectRandomItems(
                 questionService.getQuestionsByCategory(
                         quizRequest.getCategory()), quizRequest.getNumberOfQuestions()
