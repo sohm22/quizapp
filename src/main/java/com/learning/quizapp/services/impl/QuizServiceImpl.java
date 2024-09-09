@@ -10,10 +10,7 @@ import com.learning.quizapp.services.IQuizService;
 import com.learning.quizapp.utils.QuestionMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class QuizServiceImpl implements IQuizService {
@@ -76,6 +73,45 @@ public class QuizServiceImpl implements IQuizService {
     public List<QuizIdTitleDTO> getQuizzesMetaDataByCategory(String category) {
         // Use the custom query method to fetch only id and title
         return quizDao.findQuizByCategory(category);
+    }
+
+    @Override
+    public SubmitQuizResponseDTO evaluateQuiz(int id, SubmitQuizRequestDTO submitQuizRequestDTO) {
+        Optional<Quiz> optionalQuiz = quizDao.findById(id);
+        Quiz quiz = optionalQuiz.orElseThrow(() -> new ResourceNotFoundException("quiz with id " + id + " not found"));
+
+        List<Question> quizQuestions = quiz.getQuestion();
+        List<QuestionAnswerDTO> userAnswers = submitQuizRequestDTO.getAnswers();
+
+        //convert user answer to map
+        Map<Integer, QuestionAnswerDTO> userAnswerMap = new HashMap<>();
+        for (QuestionAnswerDTO questionAnswerDTO : userAnswers) {
+            userAnswerMap.put(questionAnswerDTO.getId(), questionAnswerDTO);
+        }
+
+        int score = 0;
+        List<FeedbackDTO> feedbackDTOList = new ArrayList<>();
+        for (Question question : quizQuestions) {
+            QuestionAnswerDTO userAnswer = userAnswerMap.get(question.getId());
+
+            FeedbackDTO feedbackDTO = new FeedbackDTO();
+            feedbackDTO.setId(question.getId());
+            feedbackDTO.setCorrectAnswer(question.getCorrectAnswer());
+            feedbackDTO.isCorrect(false);
+            if (userAnswer != null) {
+                if (question.getCorrectAnswer().equals(userAnswer.getUserAnswer())) {
+                    score++;
+                    feedbackDTO.isCorrect(true);
+                }
+            }
+            feedbackDTOList.add(feedbackDTO);
+        }
+        SubmitQuizResponseDTO submitQuizResponseDTO = new SubmitQuizResponseDTO();
+        submitQuizResponseDTO.setTotalQuestions(quizQuestions.size());
+        submitQuizResponseDTO.setScore(score);
+        submitQuizResponseDTO.setFeedbackDTOList(feedbackDTOList);
+
+        return submitQuizResponseDTO;
     }
 
     private static <T> List<T> selectRandomItems(List<T> list, int numberOfItems) {

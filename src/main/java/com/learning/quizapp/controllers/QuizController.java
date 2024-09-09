@@ -1,10 +1,7 @@
 package com.learning.quizapp.controllers;
 
-import com.learning.quizapp.dtos.CategoryQuizCountDTO;
-import com.learning.quizapp.dtos.QuizIdTitleDTO;
-import com.learning.quizapp.dtos.QuizQuestionTitleOptionDTO;
+import com.learning.quizapp.dtos.*;
 import com.learning.quizapp.model.Quiz;
-import com.learning.quizapp.dtos.QuizRequestDTO;
 import com.learning.quizapp.services.IQuizService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -48,4 +45,11 @@ public class QuizController {
     public ResponseEntity<List<QuizIdTitleDTO>> getQuizMetaDataByCategory(@PathVariable String category){
         return ResponseEntity.ok(quizService.getQuizzesMetaDataByCategory(category));
     }
+
+    @PostMapping("{id}/submit")
+    public ResponseEntity<SubmitQuizResponseDTO> evaluateQuiz(@PathVariable int id, @RequestBody SubmitQuizRequestDTO submitQuizRequestDTO) {
+        SubmitQuizResponseDTO submitQuizResponseDTO = quizService.evaluateQuiz(id, submitQuizRequestDTO);
+        return ResponseEntity.ok(submitQuizResponseDTO);
+    }
+
 }
