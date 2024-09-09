@@ -1,14 +1,17 @@
 package com.learning.quizapp.services.impl;
 
 import com.learning.quizapp.dao.QuizDao;
-import com.learning.quizapp.dtos.CategoryQuizCountDto;
-import com.learning.quizapp.dtos.QuizIdTitleDto;
+import com.learning.quizapp.dtos.CategoryQuizCountDTO;
+import com.learning.quizapp.dtos.QuestionTitleOptionDTO;
+import com.learning.quizapp.dtos.QuizIdTitleDTO;
+import com.learning.quizapp.dtos.QuizQuestionTitleOptionDTO;
 import com.learning.quizapp.exceptions.ResourceNotFoundException;
 import com.learning.quizapp.model.Question;
 import com.learning.quizapp.model.Quiz;
 import com.learning.quizapp.model.QuizRequest;
 import com.learning.quizapp.services.IQuestionService;
 import com.learning.quizapp.services.IQuizService;
+import com.learning.quizapp.utils.QuestionMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -28,22 +31,33 @@ public class QuizServiceImpl implements IQuizService {
     }
 
     @Override
-    public Quiz getQuizById(int id) {
+    public QuizQuestionTitleOptionDTO getQuizById(int id) {
         Optional<Quiz> quiz = quizDao.findById(id);
-        return quiz.orElseThrow(() ->new ResourceNotFoundException("quiz with id " + id + " not found"));
+        Quiz quizFound = quiz.orElseThrow(() -> new ResourceNotFoundException("quiz with id " + id + " not found"));
+
+        //convert List of questionDAO to List of toQuestionTitleOptionDTO
+        List<QuestionTitleOptionDTO> questionTitleOptionDTOList = QuestionMapper.toListOfDTO(quizFound.getQuestion());
+
+        QuizQuestionTitleOptionDTO quizDTO = new QuizQuestionTitleOptionDTO();
+        quizDTO.setId(quizFound.getId());
+        quizDTO.setTitle(quizFound.getTitle());
+        quizDTO.setCategory(quizFound.getCategory());
+        quizDTO.setQuestion(questionTitleOptionDTOList);
+
+        return quizDTO;
     }
 
     @Override
-    public List<CategoryQuizCountDto> getCategoriesWithQuizCount() {
+    public List<CategoryQuizCountDTO> getCategoriesWithQuizCount() {
         // Fetch raw results from the DAO
         List<Object[]> results = quizDao.findCategoriesWithQuizCount();
 
         // Map results to a list of CategoryQuizCountDto
-        List<CategoryQuizCountDto> categoryQuizCounts = new ArrayList<>();
+        List<CategoryQuizCountDTO> categoryQuizCounts = new ArrayList<>();
         for (Object[] result : results) {
             String category = (String) result[0];
             Long count = (Long) result[1]; // COUNT returns Long in JPA
-            categoryQuizCounts.add(new CategoryQuizCountDto(category, count));
+            categoryQuizCounts.add(new CategoryQuizCountDTO(category, count));
         }
 
         return categoryQuizCounts;
@@ -63,7 +77,7 @@ public class QuizServiceImpl implements IQuizService {
     }
 
     @Override
-    public List<QuizIdTitleDto> getQuizzesMetaDataByCategory(String category) {
+    public List<QuizIdTitleDTO> getQuizzesMetaDataByCategory(String category) {
         // Use the custom query method to fetch only id and title
         return quizDao.findQuizByCategory(category);
     }

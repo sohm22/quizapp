@@ -1,7 +1,8 @@
 package com.learning.quizapp.controllers;
 
-import com.learning.quizapp.dtos.CategoryQuizCountDto;
-import com.learning.quizapp.dtos.QuizIdTitleDto;
+import com.learning.quizapp.dtos.CategoryQuizCountDTO;
+import com.learning.quizapp.dtos.QuizIdTitleDTO;
+import com.learning.quizapp.dtos.QuizQuestionTitleOptionDTO;
 import com.learning.quizapp.model.Quiz;
 import com.learning.quizapp.model.QuizRequest;
 import com.learning.quizapp.services.IQuizService;
@@ -34,17 +35,17 @@ public class QuizController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Quiz> getQuiz(@PathVariable int id) {
+    public ResponseEntity<QuizQuestionTitleOptionDTO> getQuiz(@PathVariable int id) {
         return ResponseEntity.ok(quizService.getQuizById(id));
     }
 
     @GetMapping("categories/count")
-    public ResponseEntity<List<CategoryQuizCountDto>> getCategories() {
+    public ResponseEntity<List<CategoryQuizCountDTO>> getCategories() {
         return ResponseEntity.ok(quizService.getCategoriesWithQuizCount());
     }
 
     @GetMapping("category/{category}")
-    public ResponseEntity<List<QuizIdTitleDto>> getQuizMetaDataByCategory(@PathVariable String category){
+    public ResponseEntity<List<QuizIdTitleDTO>> getQuizMetaDataByCategory(@PathVariable String category){
         return ResponseEntity.ok(quizService.getQuizzesMetaDataByCategory(category));
     }
 }
