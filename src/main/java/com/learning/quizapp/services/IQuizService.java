@@ -1,6 +1,11 @@
 package com.learning.quizapp.services;
 
-import com.learning.quizapp.dtos.*;
+import com.learning.quizapp.dtos.CategoryQuizCountDTO;
+import com.learning.quizapp.dtos.QuizIdTitleDTO;
+import com.learning.quizapp.dtos.QuizQuestionTitleOptionDTO;
+import com.learning.quizapp.dtos.QuizRequestDTO;
+import com.learning.quizapp.dtos.SubmitQuizRequestDTO;
+import com.learning.quizapp.dtos.SubmitQuizResponseDTO;
 import com.learning.quizapp.model.Quiz;
 
 import java.util.List;
