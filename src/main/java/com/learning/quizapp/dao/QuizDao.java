@@ -1,6 +1,7 @@
 package com.learning.quizapp.dao;
 
-import com.learning.quizapp.dtos.QuizIdTitleDto;
+
+import com.learning.quizapp.dtos.QuizIdTitleDTO;
 import com.learning.quizapp.model.Quiz;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -15,6 +16,6 @@ public interface QuizDao extends JpaRepository<Quiz, Integer> {
     List<Object[]> findCategoriesWithQuizCount();
 
     // Fetch only the id and title of quizzes by category using a JPQL query
-    @Query("SELECT new com.learning.quizapp.dtos.QuizIdTitleDto(q.id, q.title) FROM Quiz q WHERE q.category = :category")
-    List<QuizIdTitleDto> findQuizByCategory(@Param("category") String category);
+    @Query("SELECT new com.learning.quizapp.dtos.QuizIdTitleDTO(q.id, q.title) FROM Quiz q WHERE q.category = :category")
+    List<QuizIdTitleDTO> findQuizByCategory(@Param("category") String category);
 }

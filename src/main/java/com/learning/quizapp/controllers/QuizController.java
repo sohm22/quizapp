@@ -1,9 +1,7 @@
 package com.learning.quizapp.controllers;
 
-import com.learning.quizapp.dtos.CategoryQuizCountDto;
-import com.learning.quizapp.dtos.QuizIdTitleDto;
+import com.learning.quizapp.dtos.*;
 import com.learning.quizapp.model.Quiz;
-import com.learning.quizapp.model.QuizRequest;
 import com.learning.quizapp.services.IQuizService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +21,7 @@ public class QuizController {
     }
 
     @PostMapping
-    public ResponseEntity<Quiz> createQuiz(@RequestBody QuizRequest quizRequest) throws URISyntaxException {
+    public ResponseEntity<Quiz> createQuiz(@RequestBody QuizRequestDTO quizRequest) throws URISyntaxException {
         // Logic to create a quiz and return the response
         Quiz savedQuiz = quizService.createQuiz(quizRequest);
 
@@ -34,17 +32,24 @@ public class QuizController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Quiz> getQuiz(@PathVariable int id) {
+    public ResponseEntity<QuizQuestionTitleOptionDTO> getQuiz(@PathVariable int id) {
         return ResponseEntity.ok(quizService.getQuizById(id));
     }
 
     @GetMapping("categories/count")
-    public ResponseEntity<List<CategoryQuizCountDto>> getCategories() {
+    public ResponseEntity<List<CategoryQuizCountDTO>> getCategories() {
         return ResponseEntity.ok(quizService.getCategoriesWithQuizCount());
     }
 
     @GetMapping("category/{category}")
-    public ResponseEntity<List<QuizIdTitleDto>> getQuizMetaDataByCategory(@PathVariable String category){
+    public ResponseEntity<List<QuizIdTitleDTO>> getQuizMetaDataByCategory(@PathVariable String category){
         return ResponseEntity.ok(quizService.getQuizzesMetaDataByCategory(category));
     }
+
+    @PostMapping("{id}/submit")
+    public ResponseEntity<SubmitQuizResponseDTO> evaluateQuiz(@PathVariable int id, @RequestBody SubmitQuizRequestDTO submitQuizRequestDTO) {
+        SubmitQuizResponseDTO submitQuizResponseDTO = quizService.evaluateQuiz(id, submitQuizRequestDTO);
+        return ResponseEntity.ok(submitQuizResponseDTO);
+    }
+
 }

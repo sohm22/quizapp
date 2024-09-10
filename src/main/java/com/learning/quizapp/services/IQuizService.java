@@ -1,21 +1,21 @@
 package com.learning.quizapp.services;
 
-import com.learning.quizapp.dtos.CategoryQuizCountDto;
-import com.learning.quizapp.dtos.QuizIdTitleDto;
+import com.learning.quizapp.dtos.*;
 import com.learning.quizapp.model.Quiz;
-import com.learning.quizapp.model.QuizRequest;
 
 import java.util.List;
 
 public interface IQuizService {
 
     // create quiz
-    Quiz createQuiz(QuizRequest quizRequest);
+    Quiz createQuiz(QuizRequestDTO quizRequest);
 
     // get Quiz
-    Quiz getQuizById(int id);
+    QuizQuestionTitleOptionDTO getQuizById(int id);
 
-    List<CategoryQuizCountDto> getCategoriesWithQuizCount();
+    List<CategoryQuizCountDTO> getCategoriesWithQuizCount();
 
-    List<QuizIdTitleDto> getQuizzesMetaDataByCategory(String category);
+    List<QuizIdTitleDTO> getQuizzesMetaDataByCategory(String category);
+
+    SubmitQuizResponseDTO evaluateQuiz(int id, SubmitQuizRequestDTO submitQuizRequestDTO);
 }

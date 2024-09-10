@@ -1,9 +1,9 @@
-package com.learning.quizapp.model;
+package com.learning.quizapp.dtos;
 
 import lombok.Data;
 
 @Data
-public class QuizRequest {
+public class QuizRequestDTO {
     private String title;
     private String category;
     private int numberOfQuestions;

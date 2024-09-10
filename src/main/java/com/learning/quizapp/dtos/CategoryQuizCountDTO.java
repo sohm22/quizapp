@@ -5,7 +5,7 @@ import lombok.Data;
 
 @AllArgsConstructor
 @Data
-public class QuizIdTitleDto {
-    private int id;
-    private String title;
+public class CategoryQuizCountDTO {
+    private String category;
+    private Long quizCount;
 }
