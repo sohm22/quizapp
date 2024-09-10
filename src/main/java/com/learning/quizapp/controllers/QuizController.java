@@ -1,10 +1,21 @@
 package com.learning.quizapp.controllers;
 
-import com.learning.quizapp.dtos.*;
+import com.learning.quizapp.dtos.CategoryQuizCountDTO;
+import com.learning.quizapp.dtos.QuizIdTitleDTO;
+import com.learning.quizapp.dtos.QuizQuestionTitleOptionDTO;
+import com.learning.quizapp.dtos.QuizRequestDTO;
+import com.learning.quizapp.dtos.SubmitQuizRequestDTO;
+import com.learning.quizapp.dtos.SubmitQuizResponseDTO;
 import com.learning.quizapp.model.Quiz;
 import com.learning.quizapp.services.IQuizService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 
 import java.net.URI;
 import java.net.URISyntaxException;
