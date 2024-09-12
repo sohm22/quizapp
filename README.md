@@ -1,4 +1,9 @@
 # Quiz App
+![Build and Test](https://github.com/sohm22/quizapp/actions/workflows/mvn-build-and-test.yml/badge.svg)
+![Build and Push Docker image](https://github.com/sohm22/quizapp/actions/workflows/docker-image-build-push.yml/badge.svg)
+![Deploy to ec2](https://github.com/sohm22/quizapp/actions/workflows/deploy-on-ec2.yaml/badge.svg)
+[![Website Status](https://img.shields.io/uptimerobot/status/m797665540-353416832ea5483c4992f0f6?label=QuizMaster%20Status)](https://quizmaster.techness.in/)
+
 
 ## Prerequisite
 
