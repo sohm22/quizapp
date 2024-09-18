@@ -5,6 +5,11 @@
 [![Website Status](https://img.shields.io/uptimerobot/status/m797665540-353416832ea5483c4992f0f6?label=QuizMaster%20Status)](https://quizmaster.techness.in/)
 
 
+## Architecture 
+
+<img width="1056" alt="image" src="https://github.com/user-attachments/assets/0e085729-5c76-4369-8e59-e8f0294e3f75">
+
+
 ## Prerequisite
 
 Before running the Quiz App, ensure that the following are installed:
