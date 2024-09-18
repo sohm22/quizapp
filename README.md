@@ -5,7 +5,9 @@
 [![Website Status](https://img.shields.io/uptimerobot/status/m797665540-353416832ea5483c4992f0f6?label=QuizMaster%20Status)](https://quizmaster.techness.in/)
 
 
-## Architecture 
+## System Architecture Overview
+
+The architecture of this application is designed for scalability, security, and efficient processing. Nginx is employed to terminate TLS/HTTPS, ensuring secure communication between clients and the server. The core of the application is built on a Spring Boot app server, handling business logic and API requests, while PostgreSQL is used for reliable data storage. Additionally, the system integrates with GROQ AI to enhance AI-driven capabilities, making it a powerful solution for dynamic and interactive experiences.
 
 <img width="1056" alt="image" src="https://github.com/user-attachments/assets/0e085729-5c76-4369-8e59-e8f0294e3f75">
 
