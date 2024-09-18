@@ -4,6 +4,9 @@
 ![Deploy to ec2](https://github.com/sohm22/quizapp/actions/workflows/deploy-on-ec2.yaml/badge.svg)
 [![Website Status](https://img.shields.io/uptimerobot/status/m797665540-353416832ea5483c4992f0f6?label=QuizMaster%20Status)](https://quizmaster.techness.in/)
 
+## Introduction
+This Spring Boot application provides a comprehensive set of APIs for managing quizzes. Users can create quizzes, take quizzes, and evaluate their performance. Additionally, the application offers functionality to add new questions and categories. It also integrates AI capabilities, allowing users to generate entire quizzes by simply providing a prompt, making quiz creation more efficient and intelligent. This solution is designed to handle dynamic user inputs and offers a seamless experience for both quiz makers and participants.
+
 
 ## System Architecture Overview
 
