@@ -12,7 +12,8 @@ This Spring Boot application provides a comprehensive set of APIs for managing q
 
 The architecture of this application is designed for scalability, security, and efficient processing. Nginx is employed to terminate TLS/HTTPS, ensuring secure communication between clients and the server. The core of the application is built on a Spring Boot app server, handling business logic and API requests, while PostgreSQL is used for reliable data storage. Additionally, the system integrates with GROQ AI to enhance AI-driven capabilities, making it a powerful solution for dynamic and interactive experiences.
 
-<img width="1056" alt="image" src="https://github.com/user-attachments/assets/0e085729-5c76-4369-8e59-e8f0294e3f75">
+<img width="1057" alt="image" src="https://github.com/user-attachments/assets/2bff9238-a31c-47f0-acf3-491972400e5d">
+
 
 
 ## Prerequisite
