@@ -4,6 +4,17 @@
 ![Deploy to ec2](https://github.com/sohm22/quizapp/actions/workflows/deploy-on-ec2.yaml/badge.svg)
 [![Website Status](https://img.shields.io/uptimerobot/status/m797665540-353416832ea5483c4992f0f6?label=QuizMaster%20Status)](https://quizmaster.techness.in/)
 
+## Introduction
+This Spring Boot application provides a comprehensive set of APIs for managing quizzes. Users can create quizzes, take quizzes, and evaluate their performance. Additionally, the application offers functionality to add new questions and categories. It also integrates AI capabilities, allowing users to generate entire quizzes by simply providing a prompt, making quiz creation more efficient and intelligent. This solution is designed to handle dynamic user inputs and offers a seamless experience for both quiz makers and participants.
+
+
+## System Architecture Overview
+
+The architecture of this application is designed for scalability, security, and efficient processing. Nginx is employed to terminate TLS/HTTPS, ensuring secure communication between clients and the server. The core of the application is built on a Spring Boot app server, handling business logic and API requests, while PostgreSQL is used for reliable data storage. Additionally, the system integrates with GROQ AI to enhance AI-driven capabilities, making it a powerful solution for dynamic and interactive experiences.
+
+<img width="1057" alt="image" src="https://github.com/user-attachments/assets/2bff9238-a31c-47f0-acf3-491972400e5d">
+
+
 
 ## Prerequisite
 
