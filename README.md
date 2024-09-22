@@ -38,7 +38,35 @@ Run the below command to build maven project
 ``mvn clean install -DskipTests``
 
 ## Running the Application
+
+To run the application locally with the `dev` profile, follow these steps:
+
+1. Ensure the following program argument is passed:
+`--spring.profiles.active=dev`
+2. Add the environment variable `GROQ_API_KEY` to integrate with AI services.
+   - You can generate the API key by visiting [GROQ API Key Console](https://console.groq.com/keys).
+3. To start the application:
+   - Open `QuizappApplication.java`.
+   - Right-click on the file and select **Run**.
+   
+
+## Swagger API Documentation and Execution
+
+Once the QuizApp backend server is up and running, you can access the Swagger API documentation at the following URL:
+`http://localhost:8080/swagger-ui/index.html`
+
+## Running the Application
+make sure dev profile is configured while running on local, below program argument is passed 
+--spring.profiles.active=dev
+make sure to add "GROQ_API_KEY" with value to integrate with AI
+groq url to create API key - https://console.groq.com/keys
 To run the application, open QuizappApplication, right-click, and select "Run."
+
+## Swagger API documentation and Execution
+Once quizapp backend server is up and running, API documentation will be accessible using below url
+```
+http://localhost:8080/swagger-ui/index.html
+```
 
 ## Verification
 Verify the setup by executing the following command:
